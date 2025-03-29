@@ -6,6 +6,7 @@ import random
 import string
 from Crypto.Hash import SHA, HMAC
 from requests.auth import HTTPDigestAuth
+from timedinput import timedinput
 import argparse
 
 # Key used for generated the HMAC signature
@@ -42,7 +43,7 @@ def pair(config):
     config['auth_key'] = response["auth_key"]
     auth_Timeout = response["timeout"]
 
-    pin = input("Enter onscreen passcode: ")
+    pin = timedinput("Enter onscreen passcode: ", timeout=30, default="1234")
 
     auth = { "auth_AppId" : "1" }
     auth ['pin'] = str(pin)

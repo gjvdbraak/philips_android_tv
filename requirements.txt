@@ -1,2 +1,3 @@
 pycryptodome>=3.20
 requests>=2.32
+timedinput>=0.1.1
