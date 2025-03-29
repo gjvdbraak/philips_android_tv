@@ -1,6 +1,4 @@
-from __future__ import print_function, unicode_literals
 from base64 import b64encode,b64decode
-from datetime import datetime
 import json
 import sys
 import requests
@@ -60,6 +58,8 @@ def pair(config):
     print(r.json())
     print("Username for subsequent calls is: " + config['device_id'])
     print("Password for subsequent calls is: " + config['auth_key'])
+    return config
+
 
 def get_command(config):
     r = requests.get("https://" + config['address'] + ":1926/" + config['path'], verify=False,auth=HTTPDigestAuth(config['device_id'], config['auth_key']))
@@ -137,4 +137,6 @@ def main():
         config['body'] = { "key" : "Standby" }
         post_command(config)
 
-main()
+
+if __name__ == '__main__':
+    main()
